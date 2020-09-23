@@ -5,7 +5,8 @@ import {Colors} from './Constants';
 import {connect} from 'react-redux';
 import {SearchBar} from 'react-native-elements';
 import {fetchAllListngs} from '../actions'
-import Header from './common/Header';
+import { requestOneTimePayment, requestBillingAgreement } from 'react-native-paypal';
+import { SocialIcon } from 'react-native-elements' 
 import _ from 'lodash';
 
 const WIDTH = Dimensions.get('window').width;
@@ -39,12 +40,13 @@ const AllSpaces = (props) => {
             return <Text style={styles.spaceInfoStyle}>This listing is made by you</Text>
         }else{
             return(
-                <TouchableOpacity
-                style={styles.buttonContainerStyle}
-                onPress={() => console.log('clicked')}
-                >
-                    <Text style={[styles.buttonText, {color: Colors.mainBackGround}]}>Rent this space</Text>
-                </TouchableOpacity>
+                <SocialIcon
+                title='Pay with paypal'
+                button
+                type='paypal'
+                style={{backgroundColor: Colors.mainForeGround, marginHorizontal: WIDTH * 0.24}}
+                onPress={(item) => console.log(item.price)}
+                />
             )
         }
     }
@@ -93,7 +95,7 @@ const AllSpaces = (props) => {
         <View style={{flex: 1}}>
             <SearchBar
                 lightTheme round
-                placeholder={'What are you looking for?'}
+                placeholder={'Search by parking location'}
                 onChangeText={(text) => searchItem(text)}
                 onClear={() => setSearch([])}
                 value={search}

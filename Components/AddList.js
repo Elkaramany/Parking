@@ -19,8 +19,8 @@ const AddList = (props) => {
             Alert.alert("Please enter a more specific description")
         }else if(location.length < 5){
             Alert.alert("Please enter a more specific location")
-        }else if(price.length < 1){
-            Alert.alert("Please enter a valid price")
+        }else if(isNaN(+price)){
+            Alert.alert("Please enter a valid price number")
         }else if(isNaN(+numberOfSpaces)){
             Alert.alert("Please enter a valid space number")
         }else if(available.length < 3){
@@ -67,7 +67,6 @@ const AddList = (props) => {
                 value={description}
                 inputContainerStyle={GlobalStyles.textInputContainer}
                 inputStyle={GlobalStyles.textInputStyle}
-                placeholderTextColor={Colors.mainForeGround}
             />
             <Text style={styles.infoStyle}>Location:</Text>
             <Input
@@ -76,16 +75,15 @@ const AddList = (props) => {
                 value={location}
                 inputContainerStyle={GlobalStyles.textInputContainer}
                 inputStyle={GlobalStyles.textInputStyle}
-                placeholderTextColor={Colors.mainForeGround}
             />
             <Text style={styles.infoStyle}>Price:</Text>
             <Input
-                placeholder='10$/hr'
+                rightIcon={<Text style={[GlobalStyles.textInputStyle, {marginRight: 50}]}>$/hr</Text>}
+                placeholder='10'
                 onChangeText={(text) => CredentialSpace({prop: 'price', value: text})}
                 value={price}
                 inputContainerStyle={GlobalStyles.textInputContainer}
                 inputStyle={GlobalStyles.textInputStyle}
-                placeholderTextColor={Colors.mainForeGround}
             />
             <Text style={styles.infoStyle}>Number of spaces available:</Text>
             <Input
@@ -94,7 +92,6 @@ const AddList = (props) => {
                 value={numberOfSpaces}
                 inputContainerStyle={GlobalStyles.textInputContainer}
                 inputStyle={GlobalStyles.textInputStyle}
-                placeholderTextColor={Colors.mainForeGround}
             />
             <Text style={styles.infoStyle}>Availability hours:</Text>
             <Input
@@ -103,7 +100,6 @@ const AddList = (props) => {
                 value={available}
                 inputContainerStyle={GlobalStyles.textInputContainer}
                 inputStyle={GlobalStyles.textInputStyle}
-                placeholderTextColor={Colors.mainForeGround}
             />
             {addButton()}
             {showErroMessage()}
