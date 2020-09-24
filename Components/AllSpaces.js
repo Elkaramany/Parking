@@ -5,8 +5,6 @@ import {Colors} from './Constants';
 import {connect} from 'react-redux';
 import {SearchBar} from 'react-native-elements';
 import {fetchAllListngs} from '../actions'
-import { requestOneTimePayment, requestBillingAgreement } from 'react-native-paypal';
-import { SocialIcon } from 'react-native-elements' 
 import _ from 'lodash';
 
 const WIDTH = Dimensions.get('window').width;
@@ -40,13 +38,12 @@ const AllSpaces = (props) => {
             return <Text style={styles.spaceInfoStyle}>This listing is made by you</Text>
         }else{
             return(
-                <SocialIcon
-                title='Pay with paypal'
-                button
-                type='paypal'
-                style={{backgroundColor: Colors.mainForeGround, marginHorizontal: WIDTH * 0.24}}
-                onPress={(item) => console.log(item.price)}
-                />
+                <TouchableOpacity
+                style={[styles.buttonContainerStyle, {backgroundColor: Colors.mainForeGround}]}
+                onPress={() => props.navigation.navigate('Checkout',{item})}
+                >
+                    <Text style={[styles.buttonText, {color: Colors.mainBackGround}]}>Rent this space</Text>
+                </TouchableOpacity>
             )
         }
     }

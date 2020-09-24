@@ -7,6 +7,7 @@ import AllSpaces from './Components/AllSpaces';
 import MyListings from './Components/MyListings';
 import AddList from './Components/AddList';
 import Signup from './Components/Signup';
+import Checkout from './Components/Checkout';
 
 const ICON_SIZE = 28;
 const ACTIVE_TINT_COLOR = '#338329';
@@ -41,6 +42,7 @@ const RootStack = createStackNavigator({
     Home: {screen: Home},
     Signup:{screen:Signup},
     AddList:{screen: AddList},
+    Checkout:{screen: Checkout},
     RootTab: {screen: RootTab},
     },
     {
